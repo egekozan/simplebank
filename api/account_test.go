@@ -12,7 +12,7 @@ import (
 
 	mockdb "github.com/egekozan/simplebank/db/mock"
 	db "github.com/egekozan/simplebank/db/sqlc"
-	"github.com/egekozan/simplebank/db/util"
+	"github.com/egekozan/simplebank/util"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 )
@@ -92,7 +92,7 @@ func TestGetAccount(t *testing.T) {
 
 			tc.buildStubs(store)
 
-			server := NewServer(store)
+			server := newTestServer(t, store)
 			recorder := httptest.NewRecorder()
 
 			url := fmt.Sprintf("/accounts/%d", tc.accountID)
